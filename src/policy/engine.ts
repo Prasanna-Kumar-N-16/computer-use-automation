@@ -199,10 +199,6 @@ export class GuardedSurface implements Surface {
     this.kind = inner.kind;
   }
 
-  get actionCount(): number {
-    return this.actions;
-  }
-
   async observe(): Promise<Observation> {
     this.lastObservation = await this.inner.observe();
     return this.lastObservation;

@@ -36,13 +36,8 @@ export interface CapabilityTool {
 export class CapabilityCatalog {
   private readonly entries = new Map<string, CatalogEntry>();
 
+  /** Loads every artifact in `dir` once, keeping the highest version of each id. */
   constructor(private readonly dir: string) {
-    this.reload();
-  }
-
-  /** Load every artifact, keeping the highest version of each id. */
-  reload(): void {
-    this.entries.clear();
     let files: string[] = [];
     try {
       files = readdirSync(this.dir).filter((f) => f.endsWith(".json"));

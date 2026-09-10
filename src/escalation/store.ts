@@ -74,10 +74,6 @@ export class InterventionStore extends EventEmitter {
     return [...this.items.values()].sort((a, b) => b.raisedAt.localeCompare(a.raisedAt));
   }
 
-  pending(): Intervention[] {
-    return this.list().filter((i) => i.state !== "resolved");
-  }
-
   claim(id: string, operator: string): Intervention | undefined {
     const item = this.items.get(id);
     if (!item || item.state === "resolved") return undefined;

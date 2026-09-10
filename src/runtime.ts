@@ -89,7 +89,7 @@ export async function openSession(config: RuntimeConfig, runId?: string): Promis
   };
 }
 
-export function announceEscalation(session: Session, config: RuntimeConfig) {
+export function announceEscalation(config: RuntimeConfig) {
   return (intervention: Intervention) => {
     const url = `http://localhost:${config.operatorPort}/i/${intervention.id}`;
     process.stderr.write(
@@ -121,7 +121,7 @@ export async function replayCapability(
       store: session.store,
       baseUrl: config.baseUrl,
       escalationTimeoutMs: config.escalationTimeoutMs,
-      onEscalation: announceEscalation(session, config),
+      onEscalation: announceEscalation(config),
       requireApproved: config.requireApproved,
     });
     return await engine.run();
@@ -161,7 +161,7 @@ export async function discover(
       llm,
       store: session.store,
       escalationTimeoutMs: config.escalationTimeoutMs,
-      onEscalation: announceEscalation(session, config),
+      onEscalation: announceEscalation(config),
       autoApproveRisky: options.autoApproveRisky,
     });
     const result = await agent.run();

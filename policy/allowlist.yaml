@@ -21,7 +21,7 @@ surfaces:
     # harness, and an agent that could reach it could disable its own guardrails.
     deniedPathPatterns:
       - "^/dev(/.*)?$"
-    allowedActions: [navigate, click, type, select, press, scroll, wait]
+    allowedActions: [navigate, click, type, select, press]
 
 budgets:
   maxDiscoverySteps: 28

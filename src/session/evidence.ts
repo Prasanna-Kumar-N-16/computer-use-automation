@@ -76,11 +76,6 @@ export class EvidenceRecorder {
     return name;
   }
 
-  writeJson(name: string, value: unknown): string {
-    writeFileSync(join(this.dir, name), JSON.stringify(this.redactor.redactDeep(value), null, 2) + "\n");
-    return name;
-  }
-
   /** The one exception to redaction: values returned to the authorised caller. */
   writeCallerResult(name: string, value: unknown): string {
     writeFileSync(join(this.dir, name), JSON.stringify(value, null, 2) + "\n");

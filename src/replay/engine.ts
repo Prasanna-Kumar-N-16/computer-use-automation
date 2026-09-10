@@ -10,12 +10,11 @@
  * it worked, it did not apply, or it broke.
  */
 
-import { randomUUID } from "node:crypto";
 import type { Capability, Outcome, Step } from "../schema/capability.js";
 import type { ReplayResult, StepTrace, ReplayFailure } from "../schema/result.js";
 import { describe as describeAssertion, evaluate, waitUntil, type AssertionContext, type AssertionSurface } from "./assertions.js";
 import { selectGoverningOutcome } from "./outcomes.js";
-import { InputError, applyTransform, renderTemplate, resolveValue, typeOutput, validateInputs, type Inputs, type SecretResolver } from "./values.js";
+import { InputError, renderTemplate, resolveValue, typeOutput, validateInputs, type Inputs, type SecretResolver } from "./values.js";
 import { GuardedSurface, PolicyEngine, PolicyViolation, type ApprovalRequest } from "../policy/engine.js";
 import type { PlaywrightSurface } from "../surface/web/playwright-surface.js";
 import type { SessionHost } from "../session/host.js";
@@ -65,6 +64,13 @@ class TerminalOutcome extends Error {
 class RestartFlow extends Error {
   constructor(readonly reason: string) {
     super(reason);
+  }
+}
+
+/** Thrown to unwind out of a failed step that a human then completed by hand. */
+class ResumeAfterHuman extends Error {
+  constructor(readonly stepId: string) {
+    super(`Step ${stepId} completed by a human operator.`);
   }
 }
 
@@ -821,12 +827,3 @@ export class ReplayEngine {
     return result;
   }
 }
-
-/** Thrown to unwind out of a failed step that a human then completed by hand. */
-class ResumeAfterHuman extends Error {
-  constructor(readonly stepId: string) {
-    super(`Step ${stepId} completed by a human operator.`);
-  }
-}
-
-export { ResumeAfterHuman };

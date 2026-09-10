@@ -109,7 +109,7 @@ export function applyTransform(raw: string, transform: Transform): string {
 
 /** Cast an extracted string to the type the capability declared it returns. */
 export function typeOutput(field: OutputField, raw: string): unknown {
-  const value = applyTransform(raw, extractTransform(field));
+  const value = applyTransform(raw, field.extract.transform);
   switch (field.type) {
     case "number": {
       const n = Number(value);
@@ -120,8 +120,4 @@ export function typeOutput(field: OutputField, raw: string): unknown {
     default:
       return value;
   }
-}
-
-function extractTransform(field: OutputField): Transform {
-  return "transform" in field.extract ? (field.extract.transform as Transform) : "trim";
 }

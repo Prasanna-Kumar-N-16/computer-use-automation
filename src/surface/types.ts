@@ -57,9 +57,7 @@ export type Action =
   | { kind: "click"; ref: string }
   | { kind: "type"; ref: string; text: string; clearFirst?: boolean; pressEnter?: boolean }
   | { kind: "select"; ref: string; value: string }
-  | { kind: "press"; key: string; ref?: string }
-  | { kind: "scroll"; ref?: string; direction: "up" | "down" }
-  | { kind: "wait"; ms: number };
+  | { kind: "press"; key: string; ref?: string };
 
 export interface ActionResult {
   ok: boolean;

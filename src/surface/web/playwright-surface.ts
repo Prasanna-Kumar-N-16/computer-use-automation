@@ -286,15 +286,6 @@ export class PlaywrightSurface implements Surface {
         await this.settleAfterAction(before);
         return { ok: true };
       }
-      case "scroll": {
-        const dy = action.direction === "down" ? 400 : -400;
-        await this.page.mouse.wheel(0, dy);
-        return { ok: true };
-      }
-      case "wait": {
-        await this.page.waitForTimeout(action.ms);
-        return { ok: true };
-      }
     }
   }
 
@@ -456,11 +447,4 @@ export class PlaywrightSurface implements Surface {
     };
   }
 
-  get lastStatus(): number | undefined {
-    return this.lastDocumentStatus;
-  }
-
-  get playwrightPage(): Page {
-    return this.page;
-  }
 }

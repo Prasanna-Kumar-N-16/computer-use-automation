@@ -118,12 +118,6 @@ export class SessionHost {
     this.evidence.event("precondition", `Signed on as operator ${operatorId}.`, { operatorId });
   }
 
-  /** True when the app is showing its session-timeout screen rather than content. */
-  async isSignedOn(): Promise<boolean> {
-    const text = await this.surface.allText();
-    return !/session has timed out|Sign On/i.test(text) || /Relationship Summary|Member Inquiry/i.test(text);
-  }
-
   // ------------------------------------------------------------- live handoff
 
   /** Chrome DevTools Protocol session, used to stream the page and inject operator input. */

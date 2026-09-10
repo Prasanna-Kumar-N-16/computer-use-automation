@@ -1,0 +1,10 @@
+{"seq":1,"at":"2026-09-09T03:01:56.685Z","type":"run_started","message":"Session run-2026-09-09T03-01-56-273Z-7ac20e started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-09T03:01:56.689Z","type":"run_started","message":"Replaying member.savings_balance.lookup v1","data":{"capability":"member.savings_balance.lookup","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-09T03:01:57.437Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-09T03:01:57.437Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-09T03:01:57.671Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name","checkpoint":true}}
+{"seq":6,"at":"2026-09-09T03:01:58.149Z","type":"outcome_matched","message":"Outcome SYSTEM_MESSAGE (recoverable) matched.","data":{"stepId":"s2","code":"SYSTEM_MESSAGE","alsoMatched":[]}}
+{"seq":7,"at":"2026-09-09T03:01:58.149Z","type":"recovery","message":"Applying dismiss_element for SYSTEM_MESSAGE (attempt 1).","data":{"code":"SYSTEM_MESSAGE","action":"dismiss_element"}}
+{"seq":8,"at":"2026-09-09T03:01:58.154Z","type":"guard","message":"flagged: button \"Continue\"","data":{"type":"flagged","risk":"sensitive","describe":"button \"Continue\""}}
+{"seq":9,"at":"2026-09-09T03:01:59.248Z","type":"error","message":"Step s2 failed: Unknown element reference \"mainFrame#3\". Observe again before acting.","data":{"classification":"internal_error","expected":"step s2 to execute","observed":"Unknown element reference \"mainFrame#3\". Observe again before acting.","message":"Step s2 failed: Unknown element reference \"mainFrame#3\". Observe again before acting.","screenshot":"screens/008-s2-failed.png"}}
+{"seq":10,"at":"2026-09-09T03:01:59.248Z","type":"intervention_raised","message":"Raised iv-5282e2e9: Step s2 failed: Unknown element reference \"mainFrame#3\". Observe again before acting.","data":{"interventionId":"iv-5282e2e9","kind":"stuck","stepId":"s2"}}

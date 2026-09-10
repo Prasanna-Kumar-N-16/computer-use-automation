@@ -1,0 +1,4 @@
+{"seq":1,"at":"2026-09-10T03:12:21.243Z","type":"run_started","message":"Session run-2026-09-10T03-12-20-877Z-743805 started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-10T03:12:21.247Z","type":"run_started","message":"Replaying member.savings_balance.lookup v1","data":{"capability":"member.savings_balance.lookup","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-10T03:12:21.248Z","type":"run_finished","message":"Replay finished: failed / PRECONDITION_FAILED","data":{"status":"failed","outcomeCode":"PRECONDITION_FAILED","driftWarnings":0}}
+{"seq":4,"at":"2026-09-10T03:12:21.248Z","type":"run_finished","message":"Session run-2026-09-10T03-12-20-877Z-743805 closed."}

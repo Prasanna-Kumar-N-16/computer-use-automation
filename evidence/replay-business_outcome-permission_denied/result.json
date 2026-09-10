@@ -1,0 +1,55 @@
+{
+  "capabilityId": "member.savings_balance.lookup",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-09T03-08-48-109Z-c6be2e",
+  "status": "business_outcome",
+  "outcomeCode": "PERMISSION_DENIED",
+  "outcomeKind": "business",
+  "message": "The operator is not authorised to view member 70001. The relationship is flagged RESTRICTED.",
+  "outputs": {},
+  "steps": [
+    {
+      "stepId": "s1",
+      "intent": "Enter the member number to look up",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-09T03:08:48.977Z",
+      "durationMs": 172,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Member Inquiry\" is present"
+      }
+    }
+  ],
+  "driftWarnings": [],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-09T03-08-48-109Z-c6be2e",
+  "startedAt": "2026-09-09T03:08:48.267Z",
+  "durationMs": 1333
+}

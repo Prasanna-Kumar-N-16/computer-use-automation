@@ -1,0 +1,8 @@
+{"seq":1,"at":"2026-09-09T03:08:54.321Z","type":"run_started","message":"Session run-2026-09-09T03-08-54-174Z-1aa14c started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-09T03:08:54.326Z","type":"run_started","message":"Replaying member.savings_balance.lookup v1","data":{"capability":"member.savings_balance.lookup","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-09T03:08:55.009Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-09T03:08:55.010Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-09T03:08:55.227Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name","checkpoint":true}}
+{"seq":6,"at":"2026-09-09T03:08:55.663Z","type":"outcome_matched","message":"Outcome APPLICATION_ERROR (hard_failure) matched.","data":{"stepId":"s2","code":"APPLICATION_ERROR","alsoMatched":[]}}
+{"seq":7,"at":"2026-09-09T03:08:55.666Z","type":"run_finished","message":"Replay finished: failed / APPLICATION_ERROR","data":{"status":"failed","outcomeCode":"APPLICATION_ERROR","driftWarnings":0}}
+{"seq":8,"at":"2026-09-09T03:08:55.666Z","type":"run_finished","message":"Session run-2026-09-09T03-08-54-174Z-1aa14c closed."}

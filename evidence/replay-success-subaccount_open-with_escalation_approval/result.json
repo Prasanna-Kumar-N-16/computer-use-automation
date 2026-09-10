@@ -1,0 +1,322 @@
+{
+  "capabilityId": "member.subaccount.open",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-10T03-06-17-118Z-068058",
+  "status": "success",
+  "outcomeCode": "SUCCESS",
+  "outcomeKind": "success",
+  "message": "Open a new sub-account for a member and return the new account number.",
+  "outputs": {
+    "newAccountNumber": "9000930705"
+  },
+  "steps": [
+    {
+      "stepId": "s1",
+      "intent": "Enter the member number to look up",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:22.281Z",
+      "durationMs": 367,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s2",
+      "intent": "Search for the member",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:23.020Z",
+      "durationMs": 422,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Relationship Summary\" is present"
+      }
+    },
+    {
+      "stepId": "s3",
+      "intent": "Open a new sub-account for this member",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:23.480Z",
+      "durationMs": 401,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "role_name",
+        "attempted": [
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Open New Sub-Account\" is present"
+      }
+    },
+    {
+      "stepId": "s4",
+      "intent": "Choose the product to open",
+      "action": "select",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:23.911Z",
+      "durationMs": 58,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s5",
+      "intent": "Enter the initial deposit",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:23.996Z",
+      "durationMs": 136,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s6",
+      "intent": "Choose statement delivery",
+      "action": "select",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:24.161Z",
+      "durationMs": 48,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s7",
+      "intent": "Continue to review",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:24.236Z",
+      "durationMs": 381,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Review and Confirm\" is present"
+      }
+    },
+    {
+      "stepId": "s8",
+      "intent": "Post the account",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:06:24.645Z",
+      "durationMs": 80254,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"has been opened\" is present"
+      }
+    }
+  ],
+  "escalation": {
+    "interventionId": "iv-c2a3dfe5",
+    "reason": "Policy classified \"button \"Post Account\"\" as irreversible. A human must approve before it is performed.",
+    "raisedAtStep": "s8",
+    "resolution": "resumed",
+    "operator": "console-operator",
+    "humanActions": 0
+  },
+  "driftWarnings": [],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-10T03-06-17-118Z-068058",
+  "startedAt": "2026-09-10T03:06:21.287Z",
+  "durationMs": 83647
+}

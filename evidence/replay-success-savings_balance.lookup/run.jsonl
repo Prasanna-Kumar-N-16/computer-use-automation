@@ -1,0 +1,12 @@
+{"seq":1,"at":"2026-09-09T03:08:26.196Z","type":"run_started","message":"Session run-2026-09-09T03-08-25-785Z-9f31ec started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-09T03:08:26.200Z","type":"run_started","message":"Replaying member.savings_balance.lookup v1","data":{"capability":"member.savings_balance.lookup","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-09T03:08:26.966Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-09T03:08:26.967Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-09T03:08:27.023Z","type":"outcome_matched","message":"Outcome SESSION_EXPIRED (recoverable) matched.","data":{"stepId":"s1","code":"SESSION_EXPIRED","alsoMatched":[]}}
+{"seq":6,"at":"2026-09-09T03:08:27.023Z","type":"recovery","message":"Applying reauthenticate for SESSION_EXPIRED (attempt 1).","data":{"code":"SESSION_EXPIRED","action":"reauthenticate"}}
+{"seq":7,"at":"2026-09-09T03:08:27.647Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":8,"at":"2026-09-09T03:08:27.665Z","type":"recovery","message":"Restarting the flow from step one: the session was re-established, so on-screen state was lost","data":{"restart":1}}
+{"seq":9,"at":"2026-09-09T03:08:27.845Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name","checkpoint":true}}
+{"seq":10,"at":"2026-09-09T03:08:28.299Z","type":"action","message":"Step s2 completed: Run the member inquiry","data":{"stepId":"s2","resolvedBy":"control_name","checkpoint":true}}
+{"seq":11,"at":"2026-09-09T03:08:28.330Z","type":"run_finished","message":"Replay finished: success / SUCCESS","data":{"status":"success","outcomeCode":"SUCCESS","driftWarnings":0}}
+{"seq":12,"at":"2026-09-09T03:08:28.330Z","type":"run_finished","message":"Session run-2026-09-09T03-08-25-785Z-9f31ec closed."}

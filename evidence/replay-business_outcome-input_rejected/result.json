@@ -1,0 +1,238 @@
+{
+  "capabilityId": "member.subaccount.open",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-10T03-08-06-639Z-08eb7e",
+  "status": "business_outcome",
+  "outcomeCode": "INPUT_REJECTED",
+  "outcomeKind": "business",
+  "message": "The application rejected the supplied values.",
+  "outputs": {},
+  "steps": [
+    {
+      "stepId": "s1",
+      "intent": "Enter the member number to look up",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:07.760Z",
+      "durationMs": 164,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s2",
+      "intent": "Search for the member",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:07.948Z",
+      "durationMs": 455,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Relationship Summary\" is present"
+      }
+    },
+    {
+      "stepId": "s3",
+      "intent": "Open a new sub-account for this member",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:08.418Z",
+      "durationMs": 414,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "role_name",
+        "attempted": [
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": [
+          "bounds"
+        ]
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Open New Sub-Account\" is present"
+      }
+    },
+    {
+      "stepId": "s4",
+      "intent": "Choose the product to open",
+      "action": "select",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:08.861Z",
+      "durationMs": 57,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s5",
+      "intent": "Enter the initial deposit",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:08.946Z",
+      "durationMs": 159,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    },
+    {
+      "stepId": "s6",
+      "intent": "Choose statement delivery",
+      "action": "select",
+      "status": "ok",
+      "startedAt": "2026-09-10T03:08:09.129Z",
+      "durationMs": 51,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      }
+    }
+  ],
+  "driftWarnings": [
+    "Locator strategies disagreed on AccountTypeStatusCurrent BalanceOpened 0002771830 Savings Open $812.40 11/02/2016 0002771831 Money Market Frozen $22,040.18 01/09/2020 9000631042 Savings Open $100.00 9/9/2026 link \"Open New Sub-Account\": bounds resolved elsewhere."
+  ],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-10T03-08-06-639Z-08eb7e",
+  "startedAt": "2026-09-10T03:08:07.032Z",
+  "durationMs": 2586
+}

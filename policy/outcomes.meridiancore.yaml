@@ -1,0 +1,144 @@
+# Application-level outcome library for MeridianCore Servicing.
+#
+# Why this is not discovered:
+#
+# A discovery run walks the happy path. By construction it never sees a session
+# expire, a broadcast dialog appear, or a member record come back missing - so asking
+# the model to enumerate those conditions would mean asking it to guess. Worse, these
+# conditions are properties of the *application*, not of any one capability: every
+# capability recorded against this app can time out the same way.
+#
+# So they are curated once per application and merged into every artifact recorded
+# against it. One correction here fixes every capability at once, which is also what
+# makes this scale to a tenant running twenty apps.
+#
+# Ordering matters. Within a kind, the first match wins, so specific outcomes are
+# declared before catch-alls.
+
+surface: meridiancore
+appliesTo: "MeridianCore Servicing"
+
+outcomes:
+  # ---------------------------------------------------------------- recoverable
+
+  - id: session_expired
+    kind: recoverable
+    code: SESSION_EXPIRED
+    description: The operator session timed out and the app is showing its timeout screen.
+    scope: global
+    maxAttempts: 1
+    detect:
+      kind: text_present
+      text: "Your session has timed out"
+    recovery:
+      action: reauthenticate
+
+  - id: system_message_interstitial
+    kind: recoverable
+    code: SYSTEM_MESSAGE
+    description: A broadcast system message is covering the screen and must be dismissed.
+    scope: global
+    maxAttempts: 2
+    detect:
+      kind: all_of
+      of:
+        - kind: text_present
+          text: "System Message"
+        - kind: element_present
+          locator:
+            description: Continue button on the system message dialog
+            framePath: ["mainFrame"]
+            strategies:
+              - kind: role_name
+                role: button
+                name: Continue
+                exact: true
+    recovery:
+      action: dismiss_element
+      target:
+        description: Continue button on the system message dialog
+        framePath: ["mainFrame"]
+        strategies:
+          - kind: role_name
+            role: button
+            name: Continue
+            exact: true
+          - kind: text_anchor
+            text: Continue
+            role: button
+            exact: true
+
+  # The content frame has not painted yet. Every rendered screen carries the product
+  # footer, so its absence is a reliable "still loading" signal rather than a guess
+  # based on timing.
+  - id: content_not_rendered
+    kind: recoverable
+    code: SCREEN_NOT_READY
+    description: The content frame has not finished rendering.
+    scope: global
+    maxAttempts: 4
+    detect:
+      kind: text_absent
+      text: "MeridianCore Servicing"
+      framePath: ["mainFrame"]
+    recovery:
+      action: wait_and_retry
+      waitMs: 2500
+
+  # --------------------------------------------------------------- hard failure
+
+  - id: application_error
+    kind: hard_failure
+    code: APPLICATION_ERROR
+    description: The application returned an internal error and cannot continue.
+    scope: global
+    maxAttempts: 1
+    callerMessage: The servicing application returned an internal error. The request was not completed.
+    detect:
+      kind: any_of
+      of:
+        - kind: text_present
+          text: "Application Error"
+        - kind: text_present
+          text: "SQLCODE"
+        - kind: http_status
+          atLeast: 500
+
+  # ------------------------------------------------------------------- business
+
+  - id: member_not_found
+    kind: business
+    code: MEMBER_NOT_FOUND
+    description: No member record exists for the supplied member number.
+    scope: global
+    maxAttempts: 1
+    callerMessage: No member record exists for member number {memberId}.
+    detect:
+      kind: text_present
+      text: "No member record found"
+
+  - id: permission_denied
+    kind: business
+    code: PERMISSION_DENIED
+    description: The operator is not entitled to view this member relationship.
+    scope: global
+    maxAttempts: 1
+    callerMessage: The operator is not authorised to view member {memberId}. The relationship is flagged RESTRICTED.
+    detect:
+      kind: text_present
+      text: "not authorized to view member"
+
+  - id: input_rejected
+    kind: business
+    code: INPUT_REJECTED
+    description: The application rejected the supplied values with a validation message.
+    scope: global
+    maxAttempts: 1
+    callerMessage: The application rejected the supplied values.
+    detect:
+      kind: any_of
+      of:
+        - kind: text_present
+          text: "must be at least"
+        - kind: text_present
+          text: "Unrecognised product code"

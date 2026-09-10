@@ -1,0 +1,21 @@
+{
+  "capabilityId": "member.savings_balance.lookup",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-10T03-12-20-877Z-743805",
+  "status": "failed",
+  "outcomeCode": "PRECONDITION_FAILED",
+  "outcomeKind": "hard_failure",
+  "message": "member.savings_balance.lookup is still a draft. Unattended invocation requires promotion to approved.",
+  "outputs": {},
+  "steps": [],
+  "failure": {
+    "classification": "precondition_failed",
+    "expected": "an approved capability",
+    "observed": "approval state \"draft\"",
+    "message": "member.savings_balance.lookup is still a draft. Unattended invocation requires promotion to approved."
+  },
+  "driftWarnings": [],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-10T03-12-20-877Z-743805",
+  "startedAt": "2026-09-10T03:12:21.247Z",
+  "durationMs": 1
+}

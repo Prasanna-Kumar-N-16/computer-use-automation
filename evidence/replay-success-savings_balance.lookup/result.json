@@ -1,0 +1,101 @@
+{
+  "capabilityId": "member.savings_balance.lookup",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-09T03-08-25-785Z-9f31ec",
+  "status": "success",
+  "outcomeCode": "SUCCESS",
+  "outcomeKind": "success",
+  "message": "Look up a member and read their current savings balance.",
+  "outputs": {
+    "savingsBalance": 4182.55,
+    "memberName": "Dolores Ferrante"
+  },
+  "steps": [
+    {
+      "stepId": "s1",
+      "intent": "Enter the member number to look up",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-09T03:08:27.665Z",
+      "durationMs": 180,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Member Inquiry\" is present"
+      }
+    },
+    {
+      "stepId": "s2",
+      "intent": "Run the member inquiry",
+      "action": "click",
+      "status": "ok",
+      "startedAt": "2026-09-09T03:08:27.877Z",
+      "durationMs": 422,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "text_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Relationship Summary\" is present"
+      }
+    }
+  ],
+  "driftWarnings": [],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-09T03-08-25-785Z-9f31ec",
+  "startedAt": "2026-09-09T03:08:26.200Z",
+  "durationMs": 2130
+}

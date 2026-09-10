@@ -1,0 +1,69 @@
+# Guardrail configuration. Loaded once and enforced at a single chokepoint
+# (GuardedSurface) that both the discovery agent and the replay engine act through,
+# so there is no second code path that could bypass it.
+version: 1
+
+surfaces:
+  web:
+    # The agent may not touch an origin that is not listed here, ever.
+    allowedOrigins:
+      - "http://localhost:4173"
+      # The integration test suite boots its own copy of the mock on a separate port.
+      - "http://localhost:4273"
+    # Route allowlist, evaluated against the path of every navigation.
+    allowedPathPatterns:
+      - "^/$"
+      - "^/desk$"
+      - "^/signon$"
+      - "^/signoff$"
+      - "^/frame(/.*)?$"
+    # Denied wins over allowed. /dev/* is the test-injection surface: it exists for the
+    # harness, and an agent that could reach it could disable its own guardrails.
+    deniedPathPatterns:
+      - "^/dev(/.*)?$"
+    allowedActions: [navigate, click, type, select, press, scroll, wait]
+
+budgets:
+  maxDiscoverySteps: 28
+  maxReplayActions: 80
+  maxWallClockMs: 240000
+
+# Risk classification. Matched against the control's name attribute and its visible
+# label, in that order. Anything unmatched is `safe`.
+risk:
+  irreversible:
+    controlNames: [cmdPost, cmdTransfer, cmdDelete, cmdClose, cmdWire]
+    textPatterns:
+      - "(?i)^post account$"
+      - "(?i)wire transfer"
+      - "(?i)^(delete|remove)$"
+      - "(?i)close account"
+      - "(?i)^disburse"
+  sensitive:
+    controlNames: [cmdContinue, cmdSave, cmdSubmit, cmdUpdate]
+    textPatterns:
+      - "(?i)^(continue|submit|save|update|apply)$"
+  # block                  - refuse outright
+  # require_human_approval - pause, escalate, act only on an operator's decision
+  # flag                   - allow, but mark it loudly in the evidence
+  handling:
+    irreversible: require_human_approval
+    sensitive: flag
+
+# Applied to everything written to disk: evidence logs, artifacts, screenshots'
+# accompanying metadata. Never applied to the value returned to an authorised caller -
+# masking the answer would defeat the purpose of the capability.
+redaction:
+  rules:
+    - name: account_number
+      pattern: "\\b\\d{10}\\b"
+      mode: keep_last4
+    - name: ssn
+      pattern: "\\b\\d{3}-\\d{2}-\\d{4}\\b"
+      mode: mask_all
+    - name: card_number
+      pattern: "\\b(?:\\d[ -]*?){13,16}\\b"
+      mode: keep_last4
+  # Parameter and output values whose declared sensitivity is in this list are masked
+  # wherever they are persisted.
+  maskSensitivity: [pii, secret]

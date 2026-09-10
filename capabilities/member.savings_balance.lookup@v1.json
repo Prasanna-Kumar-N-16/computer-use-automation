@@ -1,0 +1,481 @@
+{
+  "schemaVersion": "1.0",
+  "id": "member.savings_balance.lookup",
+  "version": 1,
+  "name": "Member / Savings Balance / Lookup",
+  "description": "Look up a member and read their current savings balance.",
+  "surface": {
+    "kind": "web",
+    "entryUrlTemplate": "{baseUrl}/desk",
+    "requires": [
+      "authenticated_session"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    }
+  },
+  "inputs": [
+    {
+      "name": "memberId",
+      "type": "string",
+      "required": true,
+      "description": "The member number to look up.",
+      "sensitivity": "pii"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "savingsBalance",
+      "type": "number",
+      "description": "Current balance of the member's savings account",
+      "required": true,
+      "sensitivity": "pii",
+      "extract": {
+        "kind": "table_cell",
+        "framePath": [
+          "mainFrame"
+        ],
+        "tableHeaders": [
+          "Account",
+          "Type",
+          "Status",
+          "Current Balance",
+          "Opened"
+        ],
+        "rowMatchColumn": "Type",
+        "rowMatchValue": "Savings",
+        "rowMatchMode": "equals",
+        "valueColumn": "Current Balance",
+        "transform": "money"
+      }
+    },
+    {
+      "name": "memberName",
+      "type": "string",
+      "description": "Full name on the member record",
+      "required": true,
+      "sensitivity": "pii",
+      "extract": {
+        "kind": "regex_capture",
+        "framePath": [
+          "mainFrame"
+        ],
+        "pattern": "Member Name\\s+(.+?)\\s+Member Since",
+        "group": 1,
+        "transform": "trim"
+      }
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "s1",
+      "intent": "Enter the member number to look up",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Member Number textbox \"Member Number\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "txtMbrNo"
+            },
+            {
+              "kind": "role_name",
+              "role": "textbox",
+              "name": "Member Number",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Member Number",
+              "controlType": "text",
+              "relation": "same_row"
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 116,
+              "y": 37,
+              "width": 108,
+              "height": 17,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "memberId"
+        },
+        "clearFirst": true,
+        "pressEnter": false
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Member Number textbox \"Member Number\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "txtMbrNo"
+              },
+              {
+                "kind": "role_name",
+                "role": "textbox",
+                "name": "Member Number",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Member Number",
+                "controlType": "text",
+                "relation": "same_row"
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 116,
+                "y": 37,
+                "width": 108,
+                "height": 17,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "Member Inquiry"
+      },
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s2",
+      "intent": "Run the member inquiry",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Member Number button \"Search\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "cmdSearch"
+            },
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Search",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Member Number",
+              "controlType": "submit",
+              "relation": "same_row"
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Search",
+              "role": "button",
+              "exact": true
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 226,
+              "y": 36,
+              "width": 62,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        }
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Member Number button \"Search\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "cmdSearch"
+              },
+              {
+                "kind": "role_name",
+                "role": "button",
+                "name": "Search",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Member Number",
+                "controlType": "submit",
+                "relation": "same_row"
+              },
+              {
+                "kind": "text_anchor",
+                "text": "Search",
+                "role": "button",
+                "exact": true
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 226,
+                "y": 36,
+                "width": 62,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "Relationship Summary"
+      },
+      "timeoutMs": 15000
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "success",
+      "kind": "success",
+      "code": "SUCCESS",
+      "description": "Look up a member and read their current savings balance.",
+      "detect": {
+        "kind": "text_present",
+        "text": "Relationship Summary"
+      },
+      "scope": "step",
+      "afterSteps": [],
+      "maxAttempts": 1
+    },
+    {
+      "id": "session_expired",
+      "kind": "recoverable",
+      "code": "SESSION_EXPIRED",
+      "description": "The operator session timed out and the app is showing its timeout screen.",
+      "detect": {
+        "kind": "text_present",
+        "text": "Your session has timed out"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "reauthenticate"
+      },
+      "maxAttempts": 1
+    },
+    {
+      "id": "system_message_interstitial",
+      "kind": "recoverable",
+      "code": "SYSTEM_MESSAGE",
+      "description": "A broadcast system message is covering the screen and must be dismissed.",
+      "detect": {
+        "kind": "all_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "System Message"
+          },
+          {
+            "kind": "element_present",
+            "locator": {
+              "description": "Continue button on the system message dialog",
+              "framePath": [
+                "mainFrame"
+              ],
+              "strategies": [
+                {
+                  "kind": "role_name",
+                  "role": "button",
+                  "name": "Continue",
+                  "exact": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "dismiss_element",
+        "target": {
+          "description": "Continue button on the system message dialog",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Continue",
+              "exact": true
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Continue",
+              "role": "button",
+              "exact": true
+            }
+          ]
+        }
+      },
+      "maxAttempts": 2
+    },
+    {
+      "id": "content_not_rendered",
+      "kind": "recoverable",
+      "code": "SCREEN_NOT_READY",
+      "description": "The content frame has not finished rendering.",
+      "detect": {
+        "kind": "text_absent",
+        "text": "MeridianCore Servicing",
+        "framePath": [
+          "mainFrame"
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "wait_and_retry",
+        "waitMs": 2500
+      },
+      "maxAttempts": 4
+    },
+    {
+      "id": "application_error",
+      "kind": "hard_failure",
+      "code": "APPLICATION_ERROR",
+      "description": "The application returned an internal error and cannot continue.",
+      "detect": {
+        "kind": "any_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "Application Error"
+          },
+          {
+            "kind": "text_present",
+            "text": "SQLCODE"
+          },
+          {
+            "kind": "http_status",
+            "atLeast": 500
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The servicing application returned an internal error. The request was not completed."
+    },
+    {
+      "id": "member_not_found",
+      "kind": "business",
+      "code": "MEMBER_NOT_FOUND",
+      "description": "No member record exists for the supplied member number.",
+      "detect": {
+        "kind": "text_present",
+        "text": "No member record found"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "No member record exists for member number {memberId}."
+    },
+    {
+      "id": "permission_denied",
+      "kind": "business",
+      "code": "PERMISSION_DENIED",
+      "description": "The operator is not entitled to view this member relationship.",
+      "detect": {
+        "kind": "text_present",
+        "text": "not authorized to view member"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The operator is not authorised to view member {memberId}. The relationship is flagged RESTRICTED."
+    },
+    {
+      "id": "input_rejected",
+      "kind": "business",
+      "code": "INPUT_REJECTED",
+      "description": "The application rejected the supplied values with a validation message.",
+      "detect": {
+        "kind": "any_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "must be at least"
+          },
+          {
+            "kind": "text_present",
+            "text": "Unrecognised product code"
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The application rejected the supplied values."
+    }
+  ],
+  "approval": "draft",
+  "maxRisk": "safe",
+  "provenance": {
+    "recordedAt": "2026-09-09T02:59:09.245Z",
+    "model": "scripted",
+    "discoveryRunId": "run-2026-09-09T02-59-08-136Z-50a210",
+    "goal": "Look up member and read savings balance",
+    "tenant": "default",
+    "appFingerprint": {
+      "appName": "MeridianCore Servicing",
+      "appVersion": "7.2.1",
+      "entryTitle": "MeridianCore Servicing",
+      "structureHash": "d2098f83"
+    }
+  }
+}

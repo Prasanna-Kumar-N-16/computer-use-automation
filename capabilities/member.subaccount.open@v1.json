@@ -1,0 +1,1034 @@
+{
+  "schemaVersion": "1.0",
+  "id": "member.subaccount.open",
+  "version": 1,
+  "name": "Member / Subaccount / Open",
+  "description": "Open a new sub-account for a member and return the new account number.",
+  "surface": {
+    "kind": "web",
+    "entryUrlTemplate": "{baseUrl}/desk",
+    "requires": [
+      "authenticated_session"
+    ],
+    "viewport": {
+      "width": 1280,
+      "height": 900
+    }
+  },
+  "inputs": [
+    {
+      "name": "memberId",
+      "type": "string",
+      "required": true,
+      "description": "The member number to open a sub-account for.",
+      "sensitivity": "pii"
+    },
+    {
+      "name": "product",
+      "type": "string",
+      "required": true,
+      "description": "Product code of the sub-account to open.",
+      "sensitivity": "none",
+      "example": "SAV-02"
+    },
+    {
+      "name": "initialDeposit",
+      "type": "string",
+      "required": true,
+      "description": "Initial deposit amount, minimum 25.00.",
+      "sensitivity": "none",
+      "example": "100.00"
+    },
+    {
+      "name": "delivery",
+      "type": "string",
+      "required": true,
+      "description": "Statement delivery preference: E (electronic) or P (paper).",
+      "sensitivity": "none",
+      "example": "E"
+    }
+  ],
+  "outputs": [
+    {
+      "name": "newAccountNumber",
+      "type": "string",
+      "description": "The number of the newly opened sub-account.",
+      "required": true,
+      "sensitivity": "pii",
+      "extract": {
+        "kind": "regex_capture",
+        "framePath": [
+          "mainFrame"
+        ],
+        "pattern": "Account (\\d+) has been opened",
+        "group": 1,
+        "transform": "trim"
+      }
+    }
+  ],
+  "preconditions": [],
+  "steps": [
+    {
+      "id": "s1",
+      "intent": "Enter the member number to look up",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Member Number textbox \"Member Number\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "txtMbrNo"
+            },
+            {
+              "kind": "role_name",
+              "role": "textbox",
+              "name": "Member Number",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Member Number",
+              "controlType": "text",
+              "relation": "same_row"
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 116,
+              "y": 37,
+              "width": 108,
+              "height": 17,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "memberId"
+        },
+        "clearFirst": true,
+        "pressEnter": false
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Member Number textbox \"Member Number\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "txtMbrNo"
+              },
+              {
+                "kind": "role_name",
+                "role": "textbox",
+                "name": "Member Number",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Member Number",
+                "controlType": "text",
+                "relation": "same_row"
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(2) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 116,
+                "y": 37,
+                "width": 108,
+                "height": 17,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s2",
+      "intent": "Search for the member",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "Member Number button \"Search\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "cmdSearch"
+            },
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Search",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Member Number",
+              "controlType": "submit",
+              "relation": "same_row"
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Search",
+              "role": "button",
+              "exact": true
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 226,
+              "y": 36,
+              "width": 62,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        }
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Member Number button \"Search\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "cmdSearch"
+              },
+              {
+                "kind": "role_name",
+                "role": "button",
+                "name": "Search",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Member Number",
+                "controlType": "submit",
+                "relation": "same_row"
+              },
+              {
+                "kind": "text_anchor",
+                "text": "Search",
+                "role": "button",
+                "exact": true
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(1) > td:nth-of-type(3) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 226,
+                "y": 36,
+                "width": 62,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "Relationship Summary"
+      },
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s3",
+      "intent": "Open a new sub-account for this member",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "AccountTypeStatusCurrent BalanceOpened 0002771830 Savings Open $812.40 11/02/2016 0002771831 Money Market Frozen $22,040.18 01/09/2020 9000631042 Savings Open $100.00 9/9/2026 link \"Open New Sub-Account\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name",
+              "role": "link",
+              "name": "Open New Sub-Account",
+              "exact": true
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Open New Sub-Account",
+              "role": "link",
+              "exact": true
+            },
+            {
+              "kind": "dom_path",
+              "path": "html > body > div:nth-of-type(2) > a:nth-of-type(1)",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 10,
+              "y": 172,
+              "width": 131,
+              "height": 13,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        }
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "AccountTypeStatusCurrent BalanceOpened 0002771830 Savings Open $812.40 11/02/2016 0002771831 Money Market Frozen $22,040.18 01/09/2020 9000631042 Savings Open $100.00 9/9/2026 link \"Open New Sub-Account\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "role_name",
+                "role": "link",
+                "name": "Open New Sub-Account",
+                "exact": true
+              },
+              {
+                "kind": "text_anchor",
+                "text": "Open New Sub-Account",
+                "role": "link",
+                "exact": true
+              },
+              {
+                "kind": "dom_path",
+                "path": "html > body > div:nth-of-type(2) > a:nth-of-type(1)",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 10,
+                "y": 172,
+                "width": 131,
+                "height": 13,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "Open New Sub-Account"
+      },
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s4",
+      "intent": "Choose the product to open",
+      "action": {
+        "kind": "select",
+        "target": {
+          "description": "Product combobox \"Product\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "selProduct"
+            },
+            {
+              "kind": "role_name",
+              "role": "combobox",
+              "name": "Product",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Product",
+              "controlType": "select",
+              "relation": "same_row"
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > select",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 132,
+              "y": 51,
+              "width": 151,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "product"
+        }
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Product combobox \"Product\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "selProduct"
+              },
+              {
+                "kind": "role_name",
+                "role": "combobox",
+                "name": "Product",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Product",
+                "controlType": "select",
+                "relation": "same_row"
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(2) > td:nth-of-type(2) > select",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 132,
+                "y": 51,
+                "width": 151,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s5",
+      "intent": "Enter the initial deposit",
+      "action": {
+        "kind": "type",
+        "target": {
+          "description": "Initial Deposit textbox \"Initial Deposit\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "txtDeposit"
+            },
+            {
+              "kind": "role_name",
+              "role": "textbox",
+              "name": "Initial Deposit",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Initial Deposit",
+              "controlType": "text",
+              "relation": "same_row"
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 132,
+              "y": 72,
+              "width": 94,
+              "height": 17,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "initialDeposit"
+        },
+        "clearFirst": true,
+        "pressEnter": false
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Initial Deposit textbox \"Initial Deposit\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "txtDeposit"
+              },
+              {
+                "kind": "role_name",
+                "role": "textbox",
+                "name": "Initial Deposit",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Initial Deposit",
+                "controlType": "text",
+                "relation": "same_row"
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(3) > td:nth-of-type(2) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 132,
+                "y": 72,
+                "width": 94,
+                "height": 17,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s6",
+      "intent": "Choose statement delivery",
+      "action": {
+        "kind": "select",
+        "target": {
+          "description": "Statement Delivery combobox \"Statement Delivery\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "selDelivery"
+            },
+            {
+              "kind": "role_name",
+              "role": "combobox",
+              "name": "Statement Delivery",
+              "exact": true
+            },
+            {
+              "kind": "label_anchor",
+              "labelText": "Statement Delivery",
+              "controlType": "select",
+              "relation": "same_row"
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > select",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 132,
+              "y": 91,
+              "width": 80,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        },
+        "value": {
+          "kind": "param",
+          "name": "delivery"
+        }
+      },
+      "risk": "safe",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "Statement Delivery combobox \"Statement Delivery\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "selDelivery"
+              },
+              {
+                "kind": "role_name",
+                "role": "combobox",
+                "name": "Statement Delivery",
+                "exact": true
+              },
+              {
+                "kind": "label_anchor",
+                "labelText": "Statement Delivery",
+                "controlType": "select",
+                "relation": "same_row"
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(4) > td:nth-of-type(2) > select",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 132,
+                "y": 91,
+                "width": 80,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s7",
+      "intent": "Continue to review",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "button \"Continue\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "cmdContinue"
+            },
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Continue",
+              "exact": true
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Continue",
+              "role": "button",
+              "exact": true
+            },
+            {
+              "kind": "dom_path",
+              "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > input",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 132,
+              "y": 112,
+              "width": 73,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        }
+      },
+      "risk": "sensitive",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "button \"Continue\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "cmdContinue"
+              },
+              {
+                "kind": "role_name",
+                "role": "button",
+                "name": "Continue",
+                "exact": true
+              },
+              {
+                "kind": "text_anchor",
+                "text": "Continue",
+                "role": "button",
+                "exact": true
+              },
+              {
+                "kind": "dom_path",
+                "path": "body > div:nth-of-type(2) > form > table > tbody > tr:nth-of-type(5) > td:nth-of-type(2) > input",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 132,
+                "y": 112,
+                "width": 73,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "Review and Confirm"
+      },
+      "timeoutMs": 15000
+    },
+    {
+      "id": "s8",
+      "intent": "Post the account",
+      "action": {
+        "kind": "click",
+        "target": {
+          "description": "button \"Post Account\"",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "control_name",
+              "name": "cmdPost"
+            },
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Post Account",
+              "exact": true
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Post Account",
+              "role": "button",
+              "exact": true
+            },
+            {
+              "kind": "dom_path",
+              "path": "html > body > div:nth-of-type(2) > form > input:nth-of-type(4)",
+              "ordinal": 0
+            },
+            {
+              "kind": "bounds",
+              "x": 10,
+              "y": 155,
+              "width": 95,
+              "height": 19,
+              "viewportWidth": 1280,
+              "viewportHeight": 827
+            }
+          ]
+        }
+      },
+      "risk": "irreversible",
+      "waitFor": [
+        {
+          "kind": "element_present",
+          "locator": {
+            "description": "button \"Post Account\"",
+            "framePath": [
+              "mainFrame"
+            ],
+            "strategies": [
+              {
+                "kind": "control_name",
+                "name": "cmdPost"
+              },
+              {
+                "kind": "role_name",
+                "role": "button",
+                "name": "Post Account",
+                "exact": true
+              },
+              {
+                "kind": "text_anchor",
+                "text": "Post Account",
+                "role": "button",
+                "exact": true
+              },
+              {
+                "kind": "dom_path",
+                "path": "html > body > div:nth-of-type(2) > form > input:nth-of-type(4)",
+                "ordinal": 0
+              },
+              {
+                "kind": "bounds",
+                "x": 10,
+                "y": 155,
+                "width": 95,
+                "height": 19,
+                "viewportWidth": 1280,
+                "viewportHeight": 827
+              }
+            ]
+          }
+        }
+      ],
+      "checkpoint": {
+        "kind": "text_present",
+        "text": "has been opened"
+      },
+      "timeoutMs": 15000
+    }
+  ],
+  "outcomes": [
+    {
+      "id": "success",
+      "kind": "success",
+      "code": "SUCCESS",
+      "description": "Open a new sub-account for a member and return the new account number.",
+      "detect": {
+        "kind": "text_present",
+        "text": "has been opened"
+      },
+      "scope": "step",
+      "afterSteps": [],
+      "maxAttempts": 1
+    },
+    {
+      "id": "session_expired",
+      "kind": "recoverable",
+      "code": "SESSION_EXPIRED",
+      "description": "The operator session timed out and the app is showing its timeout screen.",
+      "detect": {
+        "kind": "text_present",
+        "text": "Your session has timed out"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "reauthenticate"
+      },
+      "maxAttempts": 1
+    },
+    {
+      "id": "system_message_interstitial",
+      "kind": "recoverable",
+      "code": "SYSTEM_MESSAGE",
+      "description": "A broadcast system message is covering the screen and must be dismissed.",
+      "detect": {
+        "kind": "all_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "System Message"
+          },
+          {
+            "kind": "element_present",
+            "locator": {
+              "description": "Continue button on the system message dialog",
+              "framePath": [
+                "mainFrame"
+              ],
+              "strategies": [
+                {
+                  "kind": "role_name",
+                  "role": "button",
+                  "name": "Continue",
+                  "exact": true
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "dismiss_element",
+        "target": {
+          "description": "Continue button on the system message dialog",
+          "framePath": [
+            "mainFrame"
+          ],
+          "strategies": [
+            {
+              "kind": "role_name",
+              "role": "button",
+              "name": "Continue",
+              "exact": true
+            },
+            {
+              "kind": "text_anchor",
+              "text": "Continue",
+              "role": "button",
+              "exact": true
+            }
+          ]
+        }
+      },
+      "maxAttempts": 2
+    },
+    {
+      "id": "content_not_rendered",
+      "kind": "recoverable",
+      "code": "SCREEN_NOT_READY",
+      "description": "The content frame has not finished rendering.",
+      "detect": {
+        "kind": "text_absent",
+        "text": "MeridianCore Servicing",
+        "framePath": [
+          "mainFrame"
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "recovery": {
+        "action": "wait_and_retry",
+        "waitMs": 2500
+      },
+      "maxAttempts": 4
+    },
+    {
+      "id": "application_error",
+      "kind": "hard_failure",
+      "code": "APPLICATION_ERROR",
+      "description": "The application returned an internal error and cannot continue.",
+      "detect": {
+        "kind": "any_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "Application Error"
+          },
+          {
+            "kind": "text_present",
+            "text": "SQLCODE"
+          },
+          {
+            "kind": "http_status",
+            "atLeast": 500
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The servicing application returned an internal error. The request was not completed."
+    },
+    {
+      "id": "member_not_found",
+      "kind": "business",
+      "code": "MEMBER_NOT_FOUND",
+      "description": "No member record exists for the supplied member number.",
+      "detect": {
+        "kind": "text_present",
+        "text": "No member record found"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "No member record exists for member number {memberId}."
+    },
+    {
+      "id": "permission_denied",
+      "kind": "business",
+      "code": "PERMISSION_DENIED",
+      "description": "The operator is not entitled to view this member relationship.",
+      "detect": {
+        "kind": "text_present",
+        "text": "not authorized to view member"
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The operator is not authorised to view member {memberId}. The relationship is flagged RESTRICTED."
+    },
+    {
+      "id": "input_rejected",
+      "kind": "business",
+      "code": "INPUT_REJECTED",
+      "description": "The application rejected the supplied values with a validation message.",
+      "detect": {
+        "kind": "any_of",
+        "of": [
+          {
+            "kind": "text_present",
+            "text": "must be at least"
+          },
+          {
+            "kind": "text_present",
+            "text": "Unrecognised product code"
+          }
+        ]
+      },
+      "scope": "global",
+      "afterSteps": [],
+      "maxAttempts": 1,
+      "callerMessage": "The application rejected the supplied values."
+    }
+  ],
+  "approval": "draft",
+  "maxRisk": "irreversible",
+  "provenance": {
+    "recordedAt": "2026-09-10T03:06:03.334Z",
+    "model": "scripted",
+    "discoveryRunId": "run-2026-09-10T03-06-00-409Z-2e9330",
+    "goal": "Open a new sub-account for a member and return the new account number.",
+    "tenant": "default",
+    "appFingerprint": {
+      "appName": "MeridianCore Servicing",
+      "appVersion": "7.2.1",
+      "entryTitle": "MeridianCore Servicing",
+      "structureHash": "d2098f83"
+    }
+  }
+}

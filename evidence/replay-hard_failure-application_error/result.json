@@ -1,0 +1,61 @@
+{
+  "capabilityId": "member.savings_balance.lookup",
+  "capabilityVersion": 1,
+  "runId": "run-2026-09-09T03-08-54-174Z-1aa14c",
+  "status": "failed",
+  "outcomeCode": "APPLICATION_ERROR",
+  "outcomeKind": "hard_failure",
+  "message": "The servicing application returned an internal error. The request was not completed.",
+  "outputs": {},
+  "steps": [
+    {
+      "stepId": "s1",
+      "intent": "Enter the member number to look up",
+      "action": "type",
+      "status": "ok",
+      "startedAt": "2026-09-09T03:08:55.035Z",
+      "durationMs": 192,
+      "recoveries": [],
+      "locator": {
+        "resolvedBy": "control_name",
+        "attempted": [
+          {
+            "kind": "control_name",
+            "matches": 1
+          },
+          {
+            "kind": "role_name",
+            "matches": 1
+          },
+          {
+            "kind": "label_anchor",
+            "matches": 1
+          },
+          {
+            "kind": "dom_path",
+            "matches": 1
+          },
+          {
+            "kind": "bounds",
+            "matches": 1
+          }
+        ],
+        "disagreements": []
+      },
+      "checkpoint": {
+        "passed": true,
+        "describe": "text \"Member Inquiry\" is present"
+      }
+    }
+  ],
+  "failure": {
+    "classification": "app_error",
+    "expected": "the application to respond normally",
+    "observed": " MeridianCore Servicing Member Inquiry | Reports | Administration Operator: OPR01 Sign Off MeridianCore Servicing v7.2.1 | Meridian Community Credit Union | Confidential Application Error SQLCODE -911: unexpected error retrieving relationship detail. Reference MCS-7741. Report this incident to the C",
+    "message": "The servicing application returned an internal error. The request was not completed."
+  },
+  "driftWarnings": [],
+  "evidenceDir": "/Users/prasannakumarnagaboyina/pkumardev/computer-use-automation/evidence/run-2026-09-09T03-08-54-174Z-1aa14c",
+  "startedAt": "2026-09-09T03:08:54.325Z",
+  "durationMs": 1341
+}

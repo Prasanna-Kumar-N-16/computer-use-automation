@@ -1,0 +1,19 @@
+{"seq":1,"at":"2026-09-10T03:06:21.280Z","type":"run_started","message":"Session run-2026-09-10T03-06-17-118Z-068058 started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":false}}
+{"seq":2,"at":"2026-09-10T03:06:21.287Z","type":"run_started","message":"Replaying member.subaccount.open v1","data":{"capability":"member.subaccount.open","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-10T03:06:22.259Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-10T03:06:22.259Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-10T03:06:22.648Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name"}}
+{"seq":6,"at":"2026-09-10T03:06:23.442Z","type":"action","message":"Step s2 completed: Search for the member","data":{"stepId":"s2","resolvedBy":"control_name","checkpoint":true}}
+{"seq":7,"at":"2026-09-10T03:06:23.881Z","type":"action","message":"Step s3 completed: Open a new sub-account for this member","data":{"stepId":"s3","resolvedBy":"role_name","checkpoint":true}}
+{"seq":8,"at":"2026-09-10T03:06:23.969Z","type":"action","message":"Step s4 completed: Choose the product to open","data":{"stepId":"s4","resolvedBy":"control_name"}}
+{"seq":9,"at":"2026-09-10T03:06:24.132Z","type":"action","message":"Step s5 completed: Enter the initial deposit","data":{"stepId":"s5","resolvedBy":"control_name"}}
+{"seq":10,"at":"2026-09-10T03:06:24.209Z","type":"action","message":"Step s6 completed: Choose statement delivery","data":{"stepId":"s6","resolvedBy":"control_name"}}
+{"seq":11,"at":"2026-09-10T03:06:24.265Z","type":"guard","message":"flagged: button \"Continue\"","data":{"type":"flagged","risk":"sensitive","describe":"button \"Continue\""}}
+{"seq":12,"at":"2026-09-10T03:06:24.617Z","type":"action","message":"Step s7 completed: Continue to review","data":{"stepId":"s7","resolvedBy":"control_name","checkpoint":true}}
+{"seq":13,"at":"2026-09-10T03:06:24.672Z","type":"guard","message":"approval_requested: button \"Post Account\"","data":{"type":"approval_requested","risk":"irreversible","describe":"button \"Post Account\""}}
+{"seq":14,"at":"2026-09-10T03:06:24.704Z","type":"intervention_raised","message":"Raised iv-c2a3dfe5: Policy classified \"button \"Post Account\"\" as irreversible. A human must approve before it is performed.","data":{"interventionId":"iv-c2a3dfe5","kind":"approval_required","stepId":"s8"}}
+{"seq":15,"at":"2026-09-10T03:07:44.532Z","type":"intervention_resolved","message":"Intervention iv-c2a3dfe5 resolved as resume.","data":{"interventionId":"iv-c2a3dfe5","decision":"resume","operator":"console-operator","humanActions":0}}
+{"seq":16,"at":"2026-09-10T03:07:44.533Z","type":"guard","message":"approval_granted: button \"Post Account\"","data":{"type":"approval_granted","risk":"irreversible","describe":"button \"Post Account\"","reason":"console-operator"}}
+{"seq":17,"at":"2026-09-10T03:07:44.899Z","type":"action","message":"Step s8 completed: Post the account","data":{"stepId":"s8","resolvedBy":"control_name","checkpoint":true}}
+{"seq":18,"at":"2026-09-10T03:07:44.935Z","type":"run_finished","message":"Replay finished: success / SUCCESS","data":{"status":"success","outcomeCode":"SUCCESS","driftWarnings":0}}
+{"seq":19,"at":"2026-09-10T03:07:44.936Z","type":"run_finished","message":"Session run-2026-09-10T03-06-17-118Z-068058 closed."}

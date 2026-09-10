@@ -1,0 +1,15 @@
+{"seq":1,"at":"2026-09-10T03:08:07.028Z","type":"run_started","message":"Session run-2026-09-10T03-08-06-639Z-08eb7e started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-10T03:08:07.032Z","type":"run_started","message":"Replaying member.subaccount.open v1","data":{"capability":"member.subaccount.open","version":1,"approval":"draft"}}
+{"seq":3,"at":"2026-09-10T03:08:07.736Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-10T03:08:07.737Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-10T03:08:07.924Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name"}}
+{"seq":6,"at":"2026-09-10T03:08:08.403Z","type":"action","message":"Step s2 completed: Search for the member","data":{"stepId":"s2","resolvedBy":"control_name","checkpoint":true}}
+{"seq":7,"at":"2026-09-10T03:08:08.445Z","type":"drift","message":"Locator strategies disagreed on AccountTypeStatusCurrent BalanceOpened ••••••1830 Savings Open $812.40 11/02/2016 ••••••1831 Money Market Frozen $22,040.18 01/09/2020 ••••••1042 Savings Open $100.00 9/9/2026 link \"Open New Sub-Account\": bounds resolved elsewhere.","data":{"stepId":"s3"}}
+{"seq":8,"at":"2026-09-10T03:08:08.832Z","type":"action","message":"Step s3 completed: Open a new sub-account for this member","data":{"stepId":"s3","resolvedBy":"role_name","checkpoint":true}}
+{"seq":9,"at":"2026-09-10T03:08:08.918Z","type":"action","message":"Step s4 completed: Choose the product to open","data":{"stepId":"s4","resolvedBy":"control_name"}}
+{"seq":10,"at":"2026-09-10T03:08:09.105Z","type":"action","message":"Step s5 completed: Enter the initial deposit","data":{"stepId":"s5","resolvedBy":"control_name"}}
+{"seq":11,"at":"2026-09-10T03:08:09.180Z","type":"action","message":"Step s6 completed: Choose statement delivery","data":{"stepId":"s6","resolvedBy":"control_name"}}
+{"seq":12,"at":"2026-09-10T03:08:09.259Z","type":"guard","message":"flagged: button \"Continue\"","data":{"type":"flagged","risk":"sensitive","describe":"button \"Continue\""}}
+{"seq":13,"at":"2026-09-10T03:08:09.618Z","type":"outcome_matched","message":"Outcome INPUT_REJECTED (business) matched.","data":{"stepId":"s7","code":"INPUT_REJECTED","alsoMatched":[]}}
+{"seq":14,"at":"2026-09-10T03:08:09.618Z","type":"run_finished","message":"Replay finished: business_outcome / INPUT_REJECTED","data":{"status":"business_outcome","outcomeCode":"INPUT_REJECTED","driftWarnings":1}}
+{"seq":15,"at":"2026-09-10T03:08:09.620Z","type":"run_finished","message":"Session run-2026-09-10T03-08-06-639Z-08eb7e closed."}

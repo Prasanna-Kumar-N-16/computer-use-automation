@@ -1,0 +1,8 @@
+{"seq":1,"at":"2026-09-10T03:12:28.488Z","type":"run_started","message":"Session run-2026-09-10T03-12-28-345Z-0f371a started against http://localhost:4173","data":{"baseUrl":"http://localhost:4173","headless":true}}
+{"seq":2,"at":"2026-09-10T03:12:28.492Z","type":"run_started","message":"Replaying member.savings_balance.lookup v1","data":{"capability":"member.savings_balance.lookup","version":1,"approval":"approved"}}
+{"seq":3,"at":"2026-09-10T03:12:29.211Z","type":"precondition","message":"Signed on as operator OPR01.","data":{"operatorId":"OPR01"}}
+{"seq":4,"at":"2026-09-10T03:12:29.211Z","type":"action","message":"Navigating to capability entry point.","data":{"url":"http://localhost:4173/desk"}}
+{"seq":5,"at":"2026-09-10T03:12:29.423Z","type":"action","message":"Step s1 completed: Enter the member number to look up","data":{"stepId":"s1","resolvedBy":"control_name","checkpoint":true}}
+{"seq":6,"at":"2026-09-10T03:12:29.905Z","type":"action","message":"Step s2 completed: Run the member inquiry","data":{"stepId":"s2","resolvedBy":"control_name","checkpoint":true}}
+{"seq":7,"at":"2026-09-10T03:12:29.932Z","type":"run_finished","message":"Replay finished: success / SUCCESS","data":{"status":"success","outcomeCode":"SUCCESS","driftWarnings":0}}
+{"seq":8,"at":"2026-09-10T03:12:29.932Z","type":"run_finished","message":"Session run-2026-09-10T03-12-28-345Z-0f371a closed."}
